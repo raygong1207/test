@@ -1,0 +1,9 @@
+sdk.dir=F:\\tools\\Android\\sdk
+flutter.sdk=F:\\tools\\flutter\\flutter
+flutter.buildMode=debug
+flutter.versionName=1.0.0
+flutter.versionCode=1
+storePassword=android
+keyPassword=123456
+keyAlias=sign
+storeFile=key/sign.jks

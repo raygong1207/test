@@ -1,3 +1,4 @@
+// This is the entry page
 import 'package:flutter/material.dart';
 import './NaviPage.dart';
 

@@ -1,6 +1,6 @@
 import 'package:bangmc/pages/MainPage.dart';
 import 'package:flutter/material.dart';
-
+import './common/common.dart';
 import './pages/MainPage.dart';
 
 void main() => runApp(BangMCApp());
@@ -11,7 +11,7 @@ class BangMCApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BMC',
+      title: '帮买菜',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -22,7 +22,81 @@ class BangMCApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: getGlobalMColorBackground(context),
+        // primaryColor: getGlobalMColorBackground(),
+        // primaryColor: Colors.lightGreen[400],
+
+        // brightness: Brightness.light,
+        // primaryColorBrightness:Brightness.light,
+        // bottomAppBarColor:Colors.red,
+        // scaffoldBackgroundColor:Colors.blue,
+        // focusColor:Colors.red,
+
+    //     Brightness brightness,
+    // MaterialColor primarySwatch,
+    // Color primaryColor,
+    // Brightness primaryColorBrightness,
+    // Color primaryColorLight,
+    // Color primaryColorDark,
+    // Color accentColor,
+    // Brightness accentColorBrightness,
+    // Color canvasColor,
+    // Color scaffoldBackgroundColor,
+    // Color bottomAppBarColor,
+    // Color cardColor,
+    // Color dividerColor,
+    // Color focusColor,
+    // Color hoverColor,
+    // Color highlightColor,
+    // Color splashColor,
+    // InteractiveInkFeatureFactory splashFactory,
+    // Color selectedRowColor,
+    // Color unselectedWidgetColor,
+    // Color disabledColor,
+    // Color buttonColor,
+    // ButtonThemeData buttonTheme,
+    // ToggleButtonsThemeData toggleButtonsTheme,
+    // Color secondaryHeaderColor,
+    // Color textSelectionColor,
+    // Color cursorColor,
+    // Color textSelectionHandleColor,
+    // Color backgroundColor,
+    // Color dialogBackgroundColor,
+    // Color indicatorColor,
+    // Color hintColor,
+    // Color errorColor,
+    // Color toggleableActiveColor,
+    // String fontFamily,
+    // TextTheme textTheme,
+    // TextTheme primaryTextTheme,
+    // TextTheme accentTextTheme,
+    // InputDecorationTheme inputDecorationTheme,
+    // IconThemeData iconTheme,
+    // IconThemeData primaryIconTheme,
+    // IconThemeData accentIconTheme,
+    // SliderThemeData sliderTheme,
+    // TabBarTheme tabBarTheme,
+    // TooltipThemeData tooltipTheme,
+    // CardTheme cardTheme,
+    // ChipThemeData chipTheme,
+    // TargetPlatform platform,
+    // MaterialTapTargetSize materialTapTargetSize,
+    // bool applyElevationOverlayColor,
+    // PageTransitionsTheme pageTransitionsTheme,
+    // AppBarTheme appBarTheme,
+    // BottomAppBarTheme bottomAppBarTheme,
+    // ColorScheme colorScheme,
+    // DialogTheme dialogTheme,
+    // FloatingActionButtonThemeData floatingActionButtonTheme,
+    // Typography typography,
+    // CupertinoThemeData cupertinoOverrideTheme,
+    // SnackBarThemeData snackBarTheme,
+    // BottomSheetThemeData bottomSheetTheme,
+    // PopupMenuThemeData popupMenuTheme,
+    // MaterialBannerThemeData bannerTheme,
+    // DividerThemeData dividerTheme,
+    // ButtonBarThemeData buttonBarTheme,
+        
       ),
       home: MainPage(),
     );

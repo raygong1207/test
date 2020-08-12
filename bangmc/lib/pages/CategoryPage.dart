@@ -8,12 +8,20 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Text("分类页面",
-    style: TextStyle(
-    decoration: TextDecoration.none,
-    fontSize: 10.0,
+    // return Text("分类页面",
+    // style: TextStyle(
+    // decoration: TextDecoration.none,
+    // fontSize: 10.0,
 
-    )
+    // )
+    // );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("title"),
+      ),
+      body: Center(
+        child:Text("body"),
+      ),
     );
   }
 }

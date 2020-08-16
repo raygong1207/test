@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../test.dart';
+import '../../common/common.dart';
 
 class CategoryCard extends StatefulWidget {
   @override
@@ -9,9 +10,7 @@ class CategoryCard extends StatefulWidget {
 class _CategoryCardState extends State<CategoryCard> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      
-    );
+    return Row();
   }
 }
 
@@ -22,22 +21,38 @@ class HomeRecommendPage extends StatefulWidget {
 
 class _HomeRecommendPageState extends State<HomeRecommendPage> {
   @override
-  Widget build(BuildContext context) { 
-    return ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: 1,
-        // itemExtent: 50.0,
-        itemBuilder: (BuildContext context,int index){
-          return Column(
-            children: <Widget>[
-              GroupTab("秒杀"),
-              GroupTab("推荐单品"),
-              GroupTab("推荐套餐"),
+  Widget build(BuildContext context) {
+    return Container(
+      color: getGlobalColorBackgroundLv2ContentPage(context),
+      child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: 1,
+          // itemExtent: 50.0,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: <Widget>[
+                GroupTab("秒杀"),
+                GroupTab("推荐单品"),
+                GroupTab("推荐套餐"),
+              ],
+            );
+          }),
+    );
+    // return ListView.builder(
+    //     scrollDirection: Axis.vertical,
+    //     itemCount: 1,
+    //     // itemExtent: 50.0,
+    //     itemBuilder: (BuildContext context,int index){
+    //       return Column(
+    //         children: <Widget>[
+    //           GroupTab("秒杀"),
+    //           GroupTab("推荐单品"),
+    //           GroupTab("推荐套餐"),
 
-            ],
-          );
-        }
-      );
+    //         ],
+    //       );
+    //     }
+    //   );
 
     // return Container(
     //   child: ListView.builder(
@@ -62,7 +77,7 @@ class _HomeRecommendPageState extends State<HomeRecommendPage> {
     //       },
     //     );
     //   }),
-      
+
     // );
   }
 }

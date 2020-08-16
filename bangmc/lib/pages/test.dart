@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../common/common.dart';
 // import 'package:flutterautotext/flutterautotext.dart';
 
 class TestPage extends StatefulWidget {
@@ -182,11 +183,11 @@ List<String> getDataList() {
   return list;
 }
 
-List<Widget> getWidgetList() {
-  return getDataList().map((item) => getItemContainer(item)).toList();
+List<Widget> getWidgetList(BuildContext context) {
+  return getDataList().map((item) => getItemContainer(context, item)).toList();
 }
 
-Widget getItemContainer(String item) {
+Widget getItemContainer(BuildContext context, String item) {
   return Padding(
     padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
     child: Container(
@@ -195,7 +196,8 @@ Widget getItemContainer(String item) {
         item,
         style: TextStyle(color: Colors.white, fontSize: 20),
       ),
-      color: Colors.blue,
+      color: getGlobalColorBackgroundLv4ItemContentPage(context),
+      // color: Colors.blue,
     ),
   );
 }
@@ -223,7 +225,7 @@ class _GroupTabState extends State<GroupTab> {
             boxShadow: [
               BoxShadow(color: Colors.grey, offset: Offset(1.0, 1.0))
             ],
-            color: Colors.lightGreen[50],
+            color: getGlobalColorBackgroundLv3GroupContentPage(context),
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(5)
             // border: 2.0,
@@ -237,6 +239,7 @@ class _GroupTabState extends State<GroupTab> {
               child: Container(
                 decoration: BoxDecoration(
                     // color: Colors.grey,
+                    color: getGlobalColorBackgroundLv3GroupContentPage(context),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(5)
                     // border: 2.0,
@@ -250,16 +253,17 @@ class _GroupTabState extends State<GroupTab> {
                         padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
                         child: Container(
                           decoration: BoxDecoration(
-                              // color: Colors.red[100],
-                              // color: Colors.lightGreen[100],
-                              // border: Border.all(
-                              //   color: Colors.grey,
+                            // color: Colors.red[100],
+                            color: getGlobalColorBackgroundLv3GroupContentPage(
+                                context),
+                            // color: Colors.lightGreen[100],
+                            // border: Border.all(
+                            //   color: Colors.grey,
 
-                              // ),
-                              // shape: BoxShape.rectangle,
-                              // borderRadius: BorderRadius.circular(5)
-
-                              ),
+                            // ),
+                            // shape: BoxShape.rectangle,
+                            // borderRadius: BorderRadius.circular(5)
+                          ),
                           child: Text(this.ClassTitle),
                         ),
                       ),
@@ -281,6 +285,7 @@ class _GroupTabState extends State<GroupTab> {
                 // height: 40.0,
                 decoration: BoxDecoration(
                     // color: Colors.red[100],
+                    color: getGlobalColorBackgroundLv3GroupContentPage(context),
                     // color: Colors.lightGreen[100],
                     // border: Border.all(
                     //   color: Colors.lightGreen,
@@ -296,7 +301,7 @@ class _GroupTabState extends State<GroupTab> {
                       //SliverGridDelegateWithFixedCrossAxisCount 构建一个横轴固定数量Widget
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           //横轴元素个数
-                          crossAxisCount: 2,
+                          crossAxisCount: 1,
                           //纵轴间距
                           mainAxisSpacing: 20.0,
                           //横轴间距
@@ -305,7 +310,7 @@ class _GroupTabState extends State<GroupTab> {
                           childAspectRatio: 1.0),
                       itemBuilder: (BuildContext context, int index) {
                         //Widget Function(BuildContext context, int index)
-                        return getItemContainer(datas[index]);
+                        return getItemContainer(context, datas[index]);
                       }),
                 ),
               ),
@@ -538,11 +543,11 @@ List<String> getDataListMe() {
   return list;
 }
 
-List<Widget> getWidgetListMe() {
-  return getDataList().map((item) => getItemContainer(item)).toList();
+List<Widget> getWidgetListMe(BuildContext context) {
+  return getDataList().map((item) => getItemContainer(context, item)).toList();
 }
 
-Widget getItemContainerMe(String item) {
+Widget getItemContainerMe(BuildContext context, String item) {
   return Padding(
     padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
     child: Container(
@@ -659,7 +664,7 @@ class _GroupTabMeState extends State<GroupTabMe> {
                           childAspectRatio: 1.0),
                       itemBuilder: (BuildContext context, int index) {
                         //Widget Function(BuildContext context, int index)
-                        return getItemContainerMe(datas[index]);
+                        return getItemContainerMe(context, datas[index]);
                       }),
                 ),
               ),

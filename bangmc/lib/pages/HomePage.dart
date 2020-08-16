@@ -108,7 +108,8 @@ class _HomePageState extends State<HomePage>
     return Expanded(
       flex: flex,
       child: Container(
-        color: Colors.white,
+        // color: Colors.white,
+        color: getGlobalColorBackgroundLv2TopBar(context),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -131,9 +132,7 @@ class _HomePageState extends State<HomePage>
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    // Text("R1C1")
-                                  ],
+                                  // children: <Widget>[Text("R1C1")],
                                 ),
                               ),
                             )),
@@ -147,9 +146,7 @@ class _HomePageState extends State<HomePage>
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    // Text("R1C2")
-                                  ],
+                                  // children: <Widget>[Text("R1C2")],
                                 ),
                               ),
                             )),
@@ -162,6 +159,43 @@ class _HomePageState extends State<HomePage>
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Container(
+                    // child: AppBar(
+                    //   elevation: 0,
+                    //   backgroundColor: Colors.white,
+                    //   leading: Icon(Icons.location_off, color: Colors.green),
+                    //   title: Text("帮买菜  ",
+                    //       style: TextStyle(
+                    //         color: getGlobalColorFont(context),
+                    //         decoration: TextDecoration.none,
+                    //         fontSize: 20.0,
+                    //         // fontStyle: FontStyle.normal,
+                    //         // fontFamily:
+                    //       )),
+                    //   actions: <Widget>[
+                    //     Text("data"),
+                    //     Expanded(
+                    //         // flex: 1,
+                    //         child: Container(
+                    //       child: TextField(
+                    //         keyboardType: TextInputType.number,
+                    //         decoration: InputDecoration(
+                    //           contentPadding: EdgeInsets.all(0.0),
+
+                    //           labelText: '请输入查找的商品名称',
+                    //           // helperText: '请输入商品名称',
+                    //           icon: Icon(Icons.search),
+                    //           border: OutlineInputBorder(
+                    //             borderSide: BorderSide(
+                    //               color: getGlobalColorBackground4(context),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         onChanged: _searchFieldChanged,
+                    //       ),
+                    //     ))
+                    //   ],
+                    // ),
+
                     // color: Colors.blue,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -177,9 +211,25 @@ class _HomePageState extends State<HomePage>
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: <Widget>[
-                                    // Text("R2C1")
+                                    // Icon(
+                                    //   Icons.location_off,
+                                    //   color: Colors.green,
+                                    // ),
+                                    Text("  帮买菜 ",
+                                        style: TextStyle(
+                                          color: getGlobalColorFont(context),
+                                          decoration: TextDecoration.none,
+                                          fontSize: 20.0,
+                                          // fontStyle: FontStyle.normal,
+                                          // fontFamily:
+                                        )),
+                                    Icon(
+                                      Icons.location_off,
+                                      color: Colors.green,
+                                    ),
+                                    Text("（点击设置收货地址）")
                                   ],
                                 ),
                               ),
@@ -194,29 +244,42 @@ class _HomePageState extends State<HomePage>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    Text("帮买菜",
-                                        style: TextStyle(
-                                          color: getGlobalColorFont(context),
-                                          decoration: TextDecoration.none,
-                                          fontSize: 16.0,
-                                          // fontFamily:
-                                        ))
-                                    // TextField(
-                                    //   keyboardType: TextInputType.number,
-                                    //   decoration: InputDecoration(
-                                    //     contentPadding: EdgeInsets.all(0.0),
+                                    Expanded(
+                                        // flex: 1,
+                                        child: Container(
+                                            // child: Icon(
+                                            //   Icons.location_off,
+                                            //   color: Colors.green,
+                                            // ),
+                                            // child: TextField(
+                                            //   textInputAction: TextInputAction.search,
+                                            //   keyboardType: TextInputType.number,
+                                            //   decoration: InputDecoration(
+                                            //     hintText: "上海青",
+                                            //     hintStyle: TextStyle(
+                                            //       color: Colors.black,
+                                            //       fontSize: 16.5,
+                                            //     ),
+                                            //     fillColor: Colors.grey,
+                                            //     // contentPadding: EdgeInsets.all(0.0),
+                                            //     contentPadding:
+                                            //         EdgeInsets.fromLTRB(30, 10, 0, 0),
 
-                                    //     labelText: '请输入查找的商品名称',
-                                    //     // helperText: '请输入商品名称',
-                                    //     icon:Icon(Icons.search),
-                                    //     border: OutlineInputBorder(
-                                    //       borderSide: BorderSide(
-                                    //         color: getGlobalColorBackground4(context),
-                                    //       ),
-                                    //     ),
-                                    //   ),
-                                    //   onChanged: _searchFieldChanged,
-                                    // ),
+                                            //     // labelText: '请输入查找的商品名称',
+                                            //     // helperText: '请输入商品名称',
+                                            //     // icon: Icon(Icons.search),
+                                            //     border: OutlineInputBorder(
+                                            //       borderRadius:
+                                            //           BorderRadius.circular(15.0),
+                                            //       borderSide: BorderSide(
+                                            //         color: getGlobalColorBackground4(
+                                            //             context),
+                                            //       ),
+                                            //     ),
+                                            //   ),
+                                            //   onChanged: _searchFieldChanged,
+                                            // ),
+                                            ))
                                   ],
                                 ),
                               ),
@@ -369,7 +432,8 @@ class _HomePageState extends State<HomePage>
     return Expanded(
         flex: flex,
         child: Container(
-          color: Colors.white,
+          // color: Colors.white,
+          color: Colors.lightGreen[50],
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: PreferredSize(

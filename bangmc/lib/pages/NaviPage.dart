@@ -154,6 +154,7 @@ class _NaviPageState extends State<NaviPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: getGlobalColorBackgroundStatusBar(context),
       // 第一级appBar
       appBar: appBarFirstLvl(context),
       // 底部导航栏页面列表

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../common/common.dart';
@@ -175,12 +177,25 @@ class _TestPage3State extends State<TestPage3> {
   }
 }
 
+List itemPics = [
+  "lib/res/haixian/haixian_longxiao01.jpg",
+  "lib/res/shucai/shucai_xilanhua01.jpg",
+  "lib/res/shuiguo/shuiguo_mugua01.jpg",
+  "lib/res/shushi/shushi_lurou01.jpg",
+  "lib/res/yinliao/yinliao_pijiu_jiashibo01.jpg",
+];
+
 List<String> getDataList() {
   List<String> list = [];
   for (int i = 0; i < 50; i++) {
     list.add(i.toString());
   }
   return list;
+}
+
+int getRandom(int min, int max) {
+  var rand = new Random();
+  return rand.nextInt(max);
 }
 
 List<Widget> getWidgetList(BuildContext context) {
@@ -191,14 +206,25 @@ Widget getItemContainer(BuildContext context, String item) {
   return Padding(
     padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
     child: Container(
-      alignment: Alignment.center,
-      child: Text(
-        item,
-        style: TextStyle(color: Colors.white, fontSize: 20),
-      ),
-      color: getGlobalColorBackgroundLv4ItemContentPage(context),
-      // color: Colors.blue,
-    ),
+        // color: getGlobalColorBackgroundLv4ItemContentPage(context),
+        // color: Colors.blue,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage(itemPics[getRandom(0, 4)]))
+            // color: Colors.getGlobalColorBackgroundLv4ItemContentPage(context),
+            // image:Image.asset(
+            //     itemPics[getRandom(0, 4)],
+            //     fit: BoxFit.scaleDown,
+            //   ),
+            ),
+        child: Column(
+          children: <Widget>[
+            Text(
+              item,
+              style: TextStyle(color: Colors.green, fontSize: 20),
+            ),
+          ],
+        )),
   );
 }
 

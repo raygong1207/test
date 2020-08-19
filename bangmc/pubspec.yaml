@@ -49,6 +49,16 @@ flutter:
      - images/logo4.jpg
      - images/2.0x/logo4.jpg
      - images/3.0x/logo4.jpg
+     - lib/res/logo.jpg
+     - lib/res/logo2.jpg
+     - lib/res/logo3.jpg
+     - lib/res/logo4.jpg
+     - lib/res/haixian/haixian_longxiao01.jpg
+     - lib/res/shucai/shucai_xilanhua01.jpg
+     - lib/res/shuiguo/shuiguo_mugua01.jpg
+     - lib/res/shushi/shushi_lurou01.jpg
+     - lib/res/yinliao/yinliao_pijiu_jiashibo01.jpg
+    #  - lib/res/haixian/haioxian_longxia01.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

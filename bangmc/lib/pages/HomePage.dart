@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage>
         child: Column(
           children: <Widget>[
             Expanded(
-                flex: 1,
+                flex: 0,
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Container(
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage>
                   ),
                 )),
             Expanded(
-                flex: 2,
+                flex: 3,
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Container(
@@ -211,20 +211,22 @@ class _HomePageState extends State<HomePage>
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     // Icon(
                                     //   Icons.location_off,
                                     //   color: Colors.green,
                                     // ),
-                                    Text("  帮买菜 ",
-                                        style: TextStyle(
-                                          color: getGlobalColorFont(context),
-                                          decoration: TextDecoration.none,
-                                          fontSize: 20.0,
-                                          // fontStyle: FontStyle.normal,
-                                          // fontFamily:
-                                        )),
+                                    // Image.asset("images/3.0x/logo4.jpg"),
+                                    Image.asset("lib/res/logo2.jpg"),
+                                    // Text("  帮买菜 ",
+                                    //     style: TextStyle(
+                                    //       color: getGlobalColorFont(context),
+                                    //       decoration: TextDecoration.none,
+                                    //       fontSize: 20.0,
+                                    //       // fontStyle: FontStyle.normal,
+                                    //       // fontFamily:
+                                    //     )),
                                     Icon(
                                       Icons.location_off,
                                       color: Colors.green,
@@ -468,7 +470,7 @@ class _HomePageState extends State<HomePage>
     return Column(
       children: <Widget>[
         genAppBarHomePage(context, 1),
-        genPageHomeBody(context, 11),
+        genPageHomeBody(context, 10),
       ],
     );
   }

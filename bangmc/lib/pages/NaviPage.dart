@@ -1,7 +1,6 @@
-// import 'dart:js';
-
 import 'package:flutter/material.dart';
-import '../common/common.dart';
+// import '../common/common_widgets.dart';
+import '../common/common_cfg.dart';
 import './HomePage.dart';
 import './CategoryPage.dart';
 import './SearchPage.dart';

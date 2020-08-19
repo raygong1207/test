@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../test.dart';
-import '../../common/common.dart';
+import '../../common/common_widgets.dart';
+import '../../common/common_cfg.dart';
 
 class CategoryCard extends StatefulWidget {
   @override

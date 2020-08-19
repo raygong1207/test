@@ -1,181 +1,8 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../common/common.dart';
+import '../common/common_cfg.dart';
 // import 'package:flutterautotext/flutterautotext.dart';
-
-class TestPage extends StatefulWidget {
-  @override
-  _TestPageState createState() => _TestPageState();
-}
-
-class _TestPageState extends State<TestPage> {
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Text("1"),
-        ),
-        // Text("1"),
-        Text("2"),
-        Text("3"),
-        Text("4"),
-      ],
-    );
-  }
-}
-
-class TestPage2 extends StatefulWidget {
-  @override
-  _TestPage2State createState() => _TestPage2State();
-}
-
-class _TestPage2State extends State<TestPage2> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100.0,
-      // width: 100.0,
-      color: Colors.red,
-      child: Center(
-        child: Container(
-          height: 32.0,
-          decoration: BoxDecoration(color: Colors.green),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[Text("1"), Text("11")],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[Text("2"), Text("22")],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class TestPage3 extends StatefulWidget {
-  @override
-  _TestPage3State createState() => _TestPage3State();
-}
-
-class _TestPage3State extends State<TestPage3> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-      child: Container(
-        height: 200.0,
-        decoration: BoxDecoration(
-            // color: Colors.lightGreen[100],
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(5)
-            // border: 2.0,
-            ),
-        // color: Colors.lightGreen,
-
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                    // color: Colors.grey,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(5)
-                    // border: 2.0,
-                    ),
-                // height: 40.0,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              // color: Colors.red[100],
-                              // color: Colors.lightGreen[100],
-                              // border: Border.all(
-                              //   color: Colors.grey,
-
-                              // ),
-                              // shape: BoxShape.rectangle,
-                              // borderRadius: BorderRadius.circular(5)
-
-                              ),
-                          child: Text("Tab标题"),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
-                        // child: Text("Row 3"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 8,
-              child: Container(
-                // height: 40.0,
-                decoration: BoxDecoration(
-                    // color: Colors.red[100],
-                    color: Colors.lightGreen[100],
-                    border: Border.all(
-                      color: Colors.lightGreen,
-                    ),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(5)
-                    // border: 2.0,
-                    ),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      // flex: 1,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        child: Text("Row 2"),
-                      ),
-                    ),
-                    Expanded(
-                      // flex: 2,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        child: Text("Row 3"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 List itemPics = [
   "lib/res/haixian/haixian_longxiao01.jpg",
@@ -185,10 +12,24 @@ List itemPics = [
   "lib/res/yinliao/yinliao_pijiu_jiashibo01.jpg",
 ];
 
-List<String> getDataList() {
-  List<String> list = [];
-  for (int i = 0; i < 50; i++) {
-    list.add(i.toString());
+List<ItemKeys> getDataList() {
+  List<ItemKeys> list = [];
+  double price = 0.0;
+  ItemKeys item = new ItemKeys();
+  int num1 = 0;
+  for (int i = 0; i < 10; i++) {
+    item.itemTitle = "商品标题";
+    item.itemDesc = "商品描述";
+    item.itemFlag = "商品标签";
+    item.itemPrice = "98.00";
+    item.itemPriceOrig = "9999.00";
+    num1 = getRandom(0, 100);
+    print(num1);
+    item.itemTitle = item.itemTitle + num1.toString();
+    price = double.parse(item.itemPrice);
+    price = price + num1;
+    item.itemPrice = price.toString();
+    list.add(item);
   }
   return list;
 }
@@ -198,33 +39,265 @@ int getRandom(int min, int max) {
   return rand.nextInt(max);
 }
 
+class ItemKeys {
+  String itemTitle;
+  String itemDesc;
+  String itemFlag;
+  String itemPrice;
+  String itemPriceOrig;
+}
+
 List<Widget> getWidgetList(BuildContext context) {
   return getDataList().map((item) => getItemContainer(context, item)).toList();
 }
 
-Widget getItemContainer(BuildContext context, String item) {
+Widget getItemContainer(BuildContext context, ItemKeys item) {
   return Padding(
     padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-    child: Container(
+
+    // child: Container(
+    //     // color: getGlobalColorBackgroundLv4ItemContentPage(context),
+    //     // color: Colors.blue,
+    //     height: 10,
+    //     alignment: Alignment.bottomCenter,
+    //     decoration: BoxDecoration(
+    //       image: DecorationImage(image: AssetImage(itemPics[getRandom(0, 4)])),
+    //       color: Colors.lightGreen[50],
+    //       // color: Colors.getGlobalColorBackgroundLv4ItemContentPage(context),
+    //       // image:Image.asset(
+    //       //     itemPics[getRandom(0, 4)],
+    //       //     fit: BoxFit.scaleDown,
+    //       //   ),
+    //     ),
+    //     child: Column(
+    //       children: <Widget>[
+    //         Text(
+    //           item.itemTitle,
+    //           style: TextStyle(color: Colors.green, fontSize: 10),
+    //         ),
+    //       ],
+    //     )),
+    child: genItemContents2(context, 1, item),
+  );
+}
+
+Widget genItemContents2(BuildContext context, int flex, ItemKeys item) {
+  return Container(
+      child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Container(
+        // alignment: new FractionalOffset(1.0, 0.0),
         // color: getGlobalColorBackgroundLv4ItemContentPage(context),
         // color: Colors.blue,
-        alignment: Alignment.center,
+        height: 100,
+        alignment: Alignment.bottomLeft,
         decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(itemPics[getRandom(0, 4)]))
-            // color: Colors.getGlobalColorBackgroundLv4ItemContentPage(context),
-            // image:Image.asset(
-            //     itemPics[getRandom(0, 4)],
-            //     fit: BoxFit.scaleDown,
-            //   ),
-            ),
-        child: Column(
-          children: <Widget>[
-            Text(
-              item,
-              style: TextStyle(color: Colors.green, fontSize: 20),
-            ),
-          ],
-        )),
+          image: DecorationImage(
+              image: AssetImage(itemPics[getRandom(0, 4)]), fit: BoxFit.cover),
+          color: Colors.lightGreen[50],
+          // color: Colors.getGlobalColorBackgroundLv4ItemContentPage(context),
+          // image:Image.asset(
+          //     itemPics[getRandom(0, 4)],
+          //     fit: BoxFit.scaleDown,
+          //   ),
+        ),
+        // child: Column(
+        //   children: <Widget>[
+        //     Text(
+        //       item.itemTitle,
+        //       style: TextStyle(color: Colors.green, fontSize: 10),
+        //     ),
+        //   ],
+        // )
+      ),
+      Text(
+        // "sdfsa",
+        item.itemTitle,
+        style: TextStyle(color: Colors.green, fontSize: 12),
+        textAlign: TextAlign.justify,
+      ),
+      Text(
+        // "sdfsa",
+        item.itemDesc,
+        style: TextStyle(color: Colors.green, fontSize: 10),
+      ),
+      Text(
+        // "sdfsa",
+        item.itemFlag,
+        style: TextStyle(color: Colors.green, fontSize: 10),
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            // "sdfsa",
+            item.itemPrice,
+            style: TextStyle(color: Colors.green, fontSize: 10),
+          ),
+          Text(
+            // "sdfsa",
+            item.itemPriceOrig,
+            style: TextStyle(color: Colors.green, fontSize: 10),
+          ),
+        ],
+      )
+    ],
+  ));
+}
+
+Widget genItemContents(BuildContext context, int flex) {
+  return Expanded(
+    flex: flex,
+    child: Container(
+      color: Colors.red,
+      // color: getGlobalColorBackgroundLv2TopBar(context),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+              flex: 5,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Container(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[Text("R2C1")],
+                              ),
+                            ),
+                          )),
+                      Expanded(
+                          flex: 0,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Container(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                // children: <Widget>[Text("R1C2")],
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 2,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Container(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[Text("R2C2")],
+                              ),
+                            ),
+                          )),
+                      Expanded(
+                          flex: 0,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Container(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                // children: <Widget>[Text("R1C2")],
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Container(
+                  // color: Colors.grey,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Container(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Text("●质量保证",
+                                      style: TextStyle(
+                                        color: getGlobalColorFontLight(context),
+                                        decoration: TextDecoration.none,
+                                        fontSize: 12.0,
+                                        // fontFamily:
+                                      ))
+                                ],
+                              ),
+                            ),
+                          )),
+                      Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Container(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Text("●全场平价",
+                                      style: TextStyle(
+                                        color: getGlobalColorFontLight(context),
+                                        decoration: TextDecoration.none,
+                                        fontSize: 12.0,
+                                        // fontFamily:
+                                      ))
+                                ],
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+              )),
+        ],
+      ),
+    ),
   );
 }
 
@@ -237,7 +310,7 @@ class GroupTab extends StatefulWidget {
 
 class _GroupTabState extends State<GroupTab> {
   String ClassTitle = "Tab标题1";
-  List<String> datas = getDataList();
+  List<ItemKeys> datas = getDataList();
 
   _GroupTabState({this.ClassTitle}) {}
 
@@ -329,11 +402,11 @@ class _GroupTabState extends State<GroupTab> {
                           //横轴元素个数
                           crossAxisCount: 1,
                           //纵轴间距
-                          mainAxisSpacing: 20.0,
+                          mainAxisSpacing: 0.0,
                           //横轴间距
-                          crossAxisSpacing: 10.0,
+                          crossAxisSpacing: 0.0,
                           //子组件宽高长度比例
-                          childAspectRatio: 1.0),
+                          childAspectRatio: 1.5),
                       itemBuilder: (BuildContext context, int index) {
                         //Widget Function(BuildContext context, int index)
                         return getItemContainer(context, datas[index]);
@@ -570,7 +643,9 @@ List<String> getDataListMe() {
 }
 
 List<Widget> getWidgetListMe(BuildContext context) {
-  return getDataList().map((item) => getItemContainer(context, item)).toList();
+  return getDataListMe()
+      .map((item) => getItemContainerMe(context, item))
+      .toList();
 }
 
 Widget getItemContainerMe(BuildContext context, String item) {

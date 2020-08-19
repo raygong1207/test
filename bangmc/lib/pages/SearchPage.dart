@@ -1,7 +1,8 @@
 import 'package:bangmc/pages/MePage.dart';
 import 'package:flutter/material.dart';
 import 'NaviPage.dart';
-import '../pages/test.dart';
+import '../common/common_widgets.dart';
+import '../common/common_cfg.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -23,11 +24,8 @@ class _SearchPageState extends State<SearchPage> {
         //   child: Image.network("https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2798216820,1841993320&fm=26&gp=0.jpg",
         //   fit: BoxFit.cover),
         // ),
-        
-
       ],
       // SearchBar(),
-
     );
   }
 }

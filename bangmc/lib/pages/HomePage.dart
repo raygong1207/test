@@ -1,6 +1,7 @@
-import 'package:bangmc/pages/SearchPage.dart';
+// import 'package:bangmc/pages/SearchPage.dart';
 import 'package:flutter/material.dart';
-import '../common/common.dart';
+// import '../common/common_widgets.dart';
+import '../common/common_cfg.dart';
 import '../pages/HomePages/HomeRecommendPage.dart';
 import '../pages/HomePages/HomeVegetables.dart';
 

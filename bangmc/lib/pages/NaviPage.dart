@@ -57,10 +57,10 @@ PreferredSizeWidget appBarFirstLvl(BuildContext context) {
 
 Map<String, IconData> gNaviPageName = {
   "首页": Icons.home,
-  "分类": Icons.category,
+  // "分类": Icons.category,
   "搜索": Icons.search,
-  "购物车": Icons.shopping_basket,
-  "我的": Icons.settings,
+  "购物车": Icons.shopping_cart,
+  "我的": Icons.perm_identity,
 };
 
 void printMap(Map<String, IconData> gNaviPageName) {
@@ -140,7 +140,7 @@ class _NaviPageState extends State<NaviPage> {
   int _NaviItemIdx = 0;
   List _PageList = [
     HomePage(),
-    CategoryPage(),
+    // CategoryPage(),
     SearchPage(),
     ShopBasketPage(),
     MePage(),

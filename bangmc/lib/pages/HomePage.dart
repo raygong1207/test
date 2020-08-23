@@ -232,7 +232,22 @@ class _HomePageState extends State<HomePage>
                                       Icons.location_off,
                                       color: Colors.green,
                                     ),
-                                    Text("（点击设置收货地址）")
+                                    InkWell(
+                                      splashColor: Colors.red,
+                                      highlightColor: Colors.black,
+                                      radius: 2,
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      onTap: () {
+                                        print("增加收货地址");
+                                      },
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            // color: Colors.green,
+                                          ),
+                                          child: Text("（点击设置收货地址）")),
+                                    )
                                   ],
                                 ),
                               ),

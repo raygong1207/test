@@ -3,6 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../common/common_cfg.dart';
 // import 'package:flutterautotext/flutterautotext.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../common/goods.dart';
+
+toast(String text) {
+  Fluttertoast.showToast(
+    msg: "登录成功",
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM, // 消息框弹出的位置
+    timeInSecForIos: 1, // 消息框持续的时间（目前的版本只有ios有效）
+    backgroundColor: Colors.red,
+    textColor: Colors.white,
+    fontSize: 16.0,
+  );
+}
 
 List itemPics = [
   "lib/res/haixian/haixian_longxiao01.jpg",
@@ -12,23 +26,21 @@ List itemPics = [
   "lib/res/yinliao/yinliao_pijiu_jiashibo01.jpg",
 ];
 
-List<ItemKeys> getDataList() {
-  List<ItemKeys> list = [];
-  double price = 0.0;
-  ItemKeys item = new ItemKeys();
+List<Goods> getDataList() {
+  List<Goods> list = [];
+  // double price = 0.0;
+  Goods item = new Goods();
   int num1 = 0;
   for (int i = 0; i < 10; i++) {
-    item.itemTitle = "商品标题";
-    item.itemDesc = "商品描述";
-    item.itemFlag = "商品标签";
-    item.itemPrice = "98.00";
-    item.itemPriceOrig = "9999.00";
+    item.goodsTitle = "商品标题";
+    item.goodsDesc = "商品描述";
+    item.goodsFlag = "商品标签";
+    item.goodsPrice = 98.00;
+    item.goodsPriceOrig = 9999.00;
     num1 = getRandom(0, 100);
     print(num1);
-    item.itemTitle = item.itemTitle + num1.toString();
-    price = double.parse(item.itemPrice);
-    price = price + num1;
-    item.itemPrice = price.toString();
+    item.goodsTitle = item.goodsTitle + num1.toString();
+    item.goodsPrice += num1;
     list.add(item);
   }
   return list;
@@ -39,21 +51,15 @@ int getRandom(int min, int max) {
   return rand.nextInt(max);
 }
 
-class ItemKeys {
-  String itemTitle;
-  String itemDesc;
-  String itemFlag;
-  String itemPrice;
-  String itemPriceOrig;
-}
+class GoodsMin extends Goods {}
 
 List<Widget> getWidgetList(BuildContext context) {
   return getDataList().map((item) => getItemContainer(context, item)).toList();
 }
 
-Widget getItemContainer(BuildContext context, ItemKeys item) {
+Widget getItemContainer(BuildContext context, Goods item) {
   return Padding(
-    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+    padding: EdgeInsets.fromLTRB(5, 2, 5, 2),
 
     // child: Container(
     //     // color: getGlobalColorBackgroundLv4ItemContentPage(context),
@@ -72,7 +78,7 @@ Widget getItemContainer(BuildContext context, ItemKeys item) {
     //     child: Column(
     //       children: <Widget>[
     //         Text(
-    //           item.itemTitle,
+    //           item.goodsTitle,
     //           style: TextStyle(color: Colors.green, fontSize: 10),
     //         ),
     //       ],
@@ -81,7 +87,7 @@ Widget getItemContainer(BuildContext context, ItemKeys item) {
   );
 }
 
-Widget genItemContents2(BuildContext context, int flex, ItemKeys item) {
+Widget genItemContents2(BuildContext context, int flex, Goods item) {
   return Container(
       child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,26 +111,26 @@ Widget genItemContents2(BuildContext context, int flex, ItemKeys item) {
         // child: Column(
         //   children: <Widget>[
         //     Text(
-        //       item.itemTitle,
+        //       item.goodsTitle,
         //       style: TextStyle(color: Colors.green, fontSize: 10),
         //     ),
         //   ],
         // )
       ),
+      // Text(
+      //   // "sdfsa",
+      //   item.goodsTitle,
+      //   style: TextStyle(color: Colors.green, fontSize: 12),
+      //   textAlign: TextAlign.justify,
+      // ),
       Text(
         // "sdfsa",
-        item.itemTitle,
-        style: TextStyle(color: Colors.green, fontSize: 12),
-        textAlign: TextAlign.justify,
-      ),
-      Text(
-        // "sdfsa",
-        item.itemDesc,
+        item.goodsDesc,
         style: TextStyle(color: Colors.green, fontSize: 10),
       ),
       Text(
         // "sdfsa",
-        item.itemFlag,
+        item.goodsFlag,
         style: TextStyle(color: Colors.green, fontSize: 10),
       ),
       Row(
@@ -132,16 +138,51 @@ Widget genItemContents2(BuildContext context, int flex, ItemKeys item) {
         children: <Widget>[
           Text(
             // "sdfsa",
-            item.itemPrice,
+            item.getGoodsPrice(),
             style: TextStyle(color: Colors.green, fontSize: 10),
           ),
-          Text(
-            // "sdfsa",
-            item.itemPriceOrig,
-            style: TextStyle(color: Colors.green, fontSize: 10),
-          ),
+          InkWell(
+            splashColor: Colors.red,
+            highlightColor: Colors.black,
+            radius: 2,
+            borderRadius: BorderRadius.circular(5.0),
+            onTap: () {
+              print("加入购物车");
+              // toast("加入购物车");
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.green,
+              ),
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+          )
+
+          // IconButton(icon: Icons.book, onPressed: () {},)
+          // Text(
+          //   // "sdfsa",
+          //   item.goodsPriceOrig,
+          //   style: TextStyle(color: Colors.green, fontSize: 10),
+          // ),
         ],
-      )
+      ),
+      Text(
+        // "sdfsa",
+        item.getGoodsPriceOrig(),
+        // style: TextStyle(color: Colors.green, fontSize: 10),
+        style: TextStyle(
+          // color: const Color(0xffff0000),
+          decoration: TextDecoration.lineThrough,
+          // decorationColor: const Color(0xff000000),
+          fontSize: 10.0,
+          color: Colors.grey,
+          decorationColor: Colors.grey,
+        ),
+      ),
     ],
   ));
 }
@@ -310,7 +351,7 @@ class GroupTab extends StatefulWidget {
 
 class _GroupTabState extends State<GroupTab> {
   String ClassTitle = "Tab标题1";
-  List<ItemKeys> datas = getDataList();
+  List<Goods> datas = getDataList();
 
   _GroupTabState({this.ClassTitle}) {}
 
@@ -431,12 +472,12 @@ class _BasketItemState extends State<BasketItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.0,
-      color: Colors.red,
+      height: 150.0,
+      color: Colors.grey,
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 0, 1),
         child: Container(
-          color: Colors.blueAccent,
+          color: Colors.white,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -444,8 +485,8 @@ class _BasketItemState extends State<BasketItem> {
               Expanded(
                   flex: 1,
                   child: Container(
-                    height: 500.0,
-                    color: Colors.green,
+                    height: 150.0,
+                    color: Colors.white,
                     child: Checkbox(
                         value: this.SelectVal,
                         onChanged: (bool val) {
@@ -455,14 +496,14 @@ class _BasketItemState extends State<BasketItem> {
                         }),
                   )),
               Expanded(
-                  flex: 2,
+                  flex: 4,
                   child: Container(
-                      height: 500, color: Colors.grey, child: Text("商品图片"))),
+                      height: 500, color: Colors.white, child: Text("商品图片"))),
               Expanded(
-                  flex: 6,
+                  flex: 4,
                   child: Container(
                       height: 500,
-                      color: Colors.yellow,
+                      color: Colors.white,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -477,7 +518,7 @@ class _BasketItemState extends State<BasketItem> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Expanded(
-                                  flex: 3,
+                                  flex: 2,
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
                                     child: Text("商品标题"),
@@ -489,7 +530,13 @@ class _BasketItemState extends State<BasketItem> {
                                     child: Text("商品型号"),
                                   )),
                               Expanded(
-                                  flex: 1,
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                    child: Text("商品数量"),
+                                  )),
+                              Expanded(
+                                  flex: 2,
                                   child: Padding(
                                       padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                       child: Row(
@@ -500,7 +547,7 @@ class _BasketItemState extends State<BasketItem> {
                                             CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Expanded(
-                                            flex: 5,
+                                            flex: 2,
                                             child: Text("75"),
                                           ),
                                           // FlatButton(

@@ -33,10 +33,10 @@ class _HomeVegetablesPageState extends State<HomeVegetablesPage> {
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: <Widget>[
-                GroupTab("蔬菜1"),
-                GroupTab("蔬菜2"),
-                GroupTab("蔬菜3"),
-                GroupTab("蔬菜4"),
+                GroupTab("蔬菜1", "蔬菜1"),
+                GroupTab("蔬菜2", "蔬菜2"),
+                GroupTab("蔬菜3", "蔬菜3"),
+                GroupTab("蔬菜4", "蔬菜4"),
               ],
             );
           }),

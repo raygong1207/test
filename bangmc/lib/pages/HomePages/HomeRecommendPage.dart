@@ -31,9 +31,9 @@ class _HomeRecommendPageState extends State<HomeRecommendPage> {
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: <Widget>[
-                GroupTab("秒杀"),
-                GroupTab("推荐单品"),
-                GroupTab("推荐套餐"),
+                GroupTab("秒杀", "秒杀"),
+                GroupTab("推荐单品", "推荐单品"),
+                GroupTab("推荐套餐", "推荐套餐"),
               ],
             );
           }),

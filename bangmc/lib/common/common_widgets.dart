@@ -26,23 +26,34 @@ List itemPics = [
   "lib/res/yinliao/yinliao_pijiu_jiashibo01.jpg",
 ];
 
-List<Goods> getDataList() {
+List<Goods> getDataList(String typeSecond) {
   List<Goods> list = [];
   // double price = 0.0;
-  Goods item = new Goods();
+  print(typeSecond);
   int num1 = 0;
+  int num2 = 0;
   for (int i = 0; i < 10; i++) {
+    Goods item = new Goods();
+    item.goodsType = "蔬菜";
+    item.goodsTypeSecond = typeSecond;
     item.goodsTitle = "商品标题";
     item.goodsDesc = "商品描述";
-    item.goodsFlag = "商品标签";
+    // item.goodsFlags[0] = "商品标签1";
+    // item.goodsFlags[1] = "商品标签2";
+    item.goodsFlags.add("商品标签1");
+    item.goodsFlags.add("商品标签2");
     item.goodsPrice = 98.00;
     item.goodsPriceOrig = 9999.00;
     num1 = getRandom(0, 100);
-    print(num1);
+    num2 = getRandom(0, 5);
+    // print(num1);
     item.goodsTitle = item.goodsTitle + num1.toString();
     item.goodsPrice += num1;
+    // item.goodsPicsPath[0] = itemPics[num2];
+    item.goodsPicsPath.add(itemPics[num2]);
     list.add(item);
   }
+
   return list;
 }
 
@@ -54,7 +65,7 @@ int getRandom(int min, int max) {
 class GoodsMin extends Goods {}
 
 List<Widget> getWidgetList(BuildContext context) {
-  return getDataList().map((item) => getItemContainer(context, item)).toList();
+  // return getDataList().map((item) => getItemContainer(context, item)).toList();
 }
 
 Widget getItemContainer(BuildContext context, Goods item) {
@@ -100,7 +111,10 @@ Widget genItemContents2(BuildContext context, int flex, Goods item) {
         alignment: Alignment.bottomLeft,
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(itemPics[getRandom(0, 4)]), fit: BoxFit.cover),
+              image: AssetImage(item.goodsPicsPath[0]), fit: BoxFit.cover),
+          // goodsPicsPath
+          // image: AssetImage(itemPics[getRandom(0, 4)]),
+          // fit: BoxFit.cover),
           color: Colors.lightGreen[50],
           // color: Colors.getGlobalColorBackgroundLv4ItemContentPage(context),
           // image:Image.asset(
@@ -128,11 +142,23 @@ Widget genItemContents2(BuildContext context, int flex, Goods item) {
         item.goodsDesc,
         style: TextStyle(color: Colors.green, fontSize: 10),
       ),
-      Text(
-        // "sdfsa",
-        item.goodsFlag,
-        style: TextStyle(color: Colors.green, fontSize: 10),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            // "sdfsa",
+            item.goodsFlags[0],
+            style: TextStyle(color: Colors.green, fontSize: 10),
+          ),
+          Text(
+            // "sdfsa",
+            item.goodsFlags[1],
+            // item.goodsTypeSecond,
+            style: TextStyle(color: Colors.green, fontSize: 10),
+          ),
+        ],
       ),
+
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -140,6 +166,52 @@ Widget genItemContents2(BuildContext context, int flex, Goods item) {
             // "sdfsa",
             item.getGoodsPrice(),
             style: TextStyle(color: Colors.green, fontSize: 10),
+          ),
+          // InkWell(
+          //   splashColor: Colors.red,
+          //   highlightColor: Colors.black,
+          //   radius: 2,
+          //   borderRadius: BorderRadius.circular(5.0),
+          //   onTap: () {
+          //     print("加入购物车");
+          //     // toast("加入购物车");
+          //   },
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(15),
+          //       color: Colors.green,
+          //     ),
+          //     child: Icon(
+          //       Icons.add,
+          //       color: Colors.white,
+          //     ),
+          //   ),
+          // )
+
+          // IconButton(icon: Icons.book, onPressed: () {},)
+          // Text(
+          //   // "sdfsa",
+          //   item.goodsPriceOrig,
+          //   style: TextStyle(color: Colors.green, fontSize: 10),
+          // ),
+        ],
+      ),
+
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            // "sdfsa",
+            item.getGoodsPriceOrig(),
+            // style: TextStyle(color: Colors.green, fontSize: 10),
+            style: TextStyle(
+              // color: const Color(0xffff0000),
+              decoration: TextDecoration.lineThrough,
+              // decorationColor: const Color(0xff000000),
+              fontSize: 10.0,
+              color: Colors.grey,
+              decorationColor: Colors.grey,
+            ),
           ),
           InkWell(
             splashColor: Colors.red,
@@ -169,19 +241,6 @@ Widget genItemContents2(BuildContext context, int flex, Goods item) {
           //   style: TextStyle(color: Colors.green, fontSize: 10),
           // ),
         ],
-      ),
-      Text(
-        // "sdfsa",
-        item.getGoodsPriceOrig(),
-        // style: TextStyle(color: Colors.green, fontSize: 10),
-        style: TextStyle(
-          // color: const Color(0xffff0000),
-          decoration: TextDecoration.lineThrough,
-          // decorationColor: const Color(0xff000000),
-          fontSize: 10.0,
-          color: Colors.grey,
-          decorationColor: Colors.grey,
-        ),
       ),
     ],
   ));
@@ -343,20 +402,23 @@ Widget genItemContents(BuildContext context, int flex) {
 }
 
 class GroupTab extends StatefulWidget {
-  String ClassTitle = "Tab标题0";
-  GroupTab(this.ClassTitle) {}
+  String classTitle = "标题";
+  String classTypeSecond = "类型";
+  GroupTab(this.classTitle, this.classTypeSecond); // {}
   @override
-  _GroupTabState createState() => _GroupTabState(ClassTitle: this.ClassTitle);
+  _GroupTabState createState() => _GroupTabState(
+      classTitle: this.classTitle, classTypeSecond: this.classTypeSecond);
 }
 
 class _GroupTabState extends State<GroupTab> {
-  String ClassTitle = "Tab标题1";
-  List<Goods> datas = getDataList();
+  String classTitle = "2标题2";
+  String classTypeSecond = "2类型2";
 
-  _GroupTabState({this.ClassTitle}) {}
+  _GroupTabState({this.classTitle, this.classTypeSecond}); // {}
 
   @override
   Widget build(BuildContext context) {
+    List<Goods> datas = getDataList(this.classTypeSecond);
     return Padding(
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Container(
@@ -404,7 +466,7 @@ class _GroupTabState extends State<GroupTab> {
                             // shape: BoxShape.rectangle,
                             // borderRadius: BorderRadius.circular(5)
                           ),
-                          child: Text(this.ClassTitle),
+                          child: Text(this.classTitle),
                         ),
                       ),
                     ),
@@ -710,18 +772,18 @@ Widget getItemContainerMe(BuildContext context, String item) {
 }
 
 class GroupTabMe extends StatefulWidget {
-  String ClassTitle = "Tab标题0";
-  GroupTabMe(this.ClassTitle) {}
+  String classTitle = "Tab2标题0";
+  GroupTabMe(this.classTitle) {}
   @override
   _GroupTabMeState createState() =>
-      _GroupTabMeState(ClassTitle: this.ClassTitle);
+      _GroupTabMeState(classTitle: this.classTitle);
 }
 
 class _GroupTabMeState extends State<GroupTabMe> {
-  String ClassTitle = "Tab标题1";
+  String classTitle = "Tab3标题1";
   List<String> datas = getDataListMe();
 
-  _GroupTabMeState({this.ClassTitle}) {}
+  _GroupTabMeState({this.classTitle}) {}
 
   @override
   Widget build(BuildContext context) {
@@ -767,7 +829,7 @@ class _GroupTabMeState extends State<GroupTabMe> {
                               // borderRadius: BorderRadius.circular(5)
 
                               ),
-                          child: Text(this.ClassTitle),
+                          child: Text(this.classTitle),
                         ),
                       ),
                     ),

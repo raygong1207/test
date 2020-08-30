@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import '../common/common_widgets.dart';
-// import '../common/common_cfg.dart';
+import '../common/common_api.dart';
+import '../common/ShoppingCart.dart';
 
-Widget ShopBasketPageBody(
-    _ShopBasketPageState thisclass, BuildContext context) {
+Widget shopBasketPageBody(
+    _ShopBasketPageState thisclass, BuildContext context, ShoppingCart cart) {
+  // List<GoodsCart> goodsList = getGoodsCartList("蔬菜");
+  // ShoppingCart cart = getShoppingCart("蔬菜");
   return Column(children: <Widget>[
     Expanded(
         flex: 1,
@@ -31,8 +34,8 @@ Widget ShopBasketPageBody(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Text("全部商品（100）"),
-                Text("已选商品（10）"),
+                Text("全部商品（${cart.goodsCntAll} ）"),
+                Text("已选商品（${cart.goodsCntSelected}）"),
               ],
             ))),
     Expanded(
@@ -45,17 +48,31 @@ Widget ShopBasketPageBody(
               // itemExtent: 50.0,
               itemBuilder: (BuildContext context, int index) {
                 return Column(
-                  children: <Widget>[
-                    // GroupTab("搜索1"),
-                    // GroupTab("搜索2"),
-                    BasketItem(),
-                    BasketItem(),
-                    BasketItem(),
-                    BasketItem(),
-                    BasketItem(),
-                    BasketItem(),
-                    BasketItem(),
-                  ],
+                  // children:goodsList.map((f) => Text("f")).toList(),
+
+                  // children: goodsList.map((f) {
+                  //   return Text("f");
+                  // }).toList(),
+
+                  children: cart.goods.map((f) {
+                    return BasketItem(cart, f);
+                    // print("object");
+                    // Text("data");
+                  }).toList(),
+
+                  // children: <Widget>[
+                  //   //   // GroupTab("搜索1"),
+                  //   //   // GroupTab("搜索2"),
+                  //   //   // int i =0;
+
+                  // BasketItem(cart, cart.goods[0]),
+                  // BasketItem(goodsList[1]),
+                  //   //   BasketItem(goodsList[2]),
+                  //   //   BasketItem(goodsList[3]),
+                  //   //   BasketItem(goodsList[4]),
+                  //   //   BasketItem(goodsList[5]),
+                  //   //   BasketItem(goodsList[6]),
+                  // ],
                 );
               }),
         )),
@@ -87,20 +104,20 @@ Widget ShopBasketPageBody(
                       height: 500.0,
                       // color: Colors.white,
                       child: Checkbox(
-                          value: thisclass.SelectVal,
+                          value: thisclass.selectVal,
                           onChanged: (bool val) {
                             thisclass.setState(() {
-                              thisclass.SelectVal = !thisclass.SelectVal;
+                              thisclass.selectVal = !thisclass.selectVal;
                             });
                           }),
                     )),
                 Expanded(
                   flex: 2,
-                  child: Text("全选（100）"),
+                  child: Text("全选（${cart.goodsCntAll}）"),
                 ),
                 Expanded(
                   flex: 3,
-                  child: Text("总价：100"),
+                  child: Text("总价：${cart.goodsSelectedPrice}"),
                 ),
                 Expanded(
                   flex: 3,
@@ -119,10 +136,11 @@ class ShopBasketPage extends StatefulWidget {
 }
 
 class _ShopBasketPageState extends State<ShopBasketPage> {
-  bool SelectVal = false;
+  bool selectVal = false;
   @override
   Widget build(BuildContext context) {
     // return ShopBasketPageBody(this, context);
+    ShoppingCart shoppingCart = getShoppingCart("蔬菜");
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -130,7 +148,7 @@ class _ShopBasketPageState extends State<ShopBasketPage> {
         leading: Icon(Icons.arrow_back),
         title: Text("购物车"),
       ),
-      body: Center(child: ShopBasketPageBody(this, context)),
+      body: Center(child: shopBasketPageBody(this, context, shoppingCart)),
     );
   }
 }

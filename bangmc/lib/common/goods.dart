@@ -1,4 +1,5 @@
 class Goods {
+  int goodsID;
   String goodsType;
   String goodsTypeSecond;
   String goodsTitle;
@@ -7,7 +8,7 @@ class Goods {
   List<String> goodsFlags = [];
   double goodsPrice;
   double goodsPriceOrig;
-  double goodsCnt;
+  double goodsUnitCnt = 1.0;
   int goodsPicsCnt;
   List<String> goodsPicsPath = [];
 

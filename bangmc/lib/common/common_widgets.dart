@@ -1,10 +1,11 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../common/common_cfg.dart';
+import '../common/common_api.dart';
 // import 'package:flutterautotext/flutterautotext.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../common/goods.dart';
+import '../common/ShoppingCart.dart';
 
 toast(String text) {
   Fluttertoast.showToast(
@@ -16,50 +17,6 @@ toast(String text) {
     textColor: Colors.white,
     fontSize: 16.0,
   );
-}
-
-List itemPics = [
-  "lib/res/haixian/haixian_longxiao01.jpg",
-  "lib/res/shucai/shucai_xilanhua01.jpg",
-  "lib/res/shuiguo/shuiguo_mugua01.jpg",
-  "lib/res/shushi/shushi_lurou01.jpg",
-  "lib/res/yinliao/yinliao_pijiu_jiashibo01.jpg",
-];
-
-List<Goods> getDataList(String typeSecond) {
-  List<Goods> list = [];
-  // double price = 0.0;
-  print(typeSecond);
-  int num1 = 0;
-  int num2 = 0;
-  for (int i = 0; i < 10; i++) {
-    Goods item = new Goods();
-    item.goodsType = "蔬菜";
-    item.goodsTypeSecond = typeSecond;
-    item.goodsTitle = "商品标题";
-    item.goodsDesc = "商品描述";
-    // item.goodsFlags[0] = "商品标签1";
-    // item.goodsFlags[1] = "商品标签2";
-    item.goodsFlags.add("商品标签1");
-    item.goodsFlags.add("商品标签2");
-    item.goodsPrice = 98.00;
-    item.goodsPriceOrig = 9999.00;
-    num1 = getRandom(0, 100);
-    num2 = getRandom(0, 5);
-    // print(num1);
-    item.goodsTitle = item.goodsTitle + num1.toString();
-    item.goodsPrice += num1;
-    // item.goodsPicsPath[0] = itemPics[num2];
-    item.goodsPicsPath.add(itemPics[num2]);
-    list.add(item);
-  }
-
-  return list;
-}
-
-int getRandom(int min, int max) {
-  var rand = new Random();
-  return rand.nextInt(max);
 }
 
 class GoodsMin extends Goods {}
@@ -525,14 +482,23 @@ class _GroupTabState extends State<GroupTab> {
 }
 
 class BasketItem extends StatefulWidget {
+  GoodsCart goods;
+  ShoppingCart cart;
+  BasketItem(this.cart, this.goods);
   @override
-  _BasketItemState createState() => _BasketItemState();
+  _BasketItemState createState() =>
+      _BasketItemState(cart: this.cart, goods: this.goods);
 }
 
 class _BasketItemState extends State<BasketItem> {
-  bool SelectVal = false;
+  bool selectVal = true;
+  String classTypeSecond = "肉类";
+  ShoppingCart cart;
+  GoodsCart goods;
+  _BasketItemState({this.cart, this.goods});
   @override
   Widget build(BuildContext context) {
+    List<Goods> datas = getDataList(this.classTypeSecond);
     return Container(
       height: 150.0,
       color: Colors.grey,
@@ -550,17 +516,29 @@ class _BasketItemState extends State<BasketItem> {
                     height: 150.0,
                     color: Colors.white,
                     child: Checkbox(
-                        value: this.SelectVal,
+                        // value: this.selectVal,
+                        value: this.goods.selectedInCart,
                         onChanged: (bool val) {
                           this.setState(() {
-                            this.SelectVal = !this.SelectVal;
+                            this.goods.selectedInCart =
+                                !this.goods.selectedInCart;
+                            this.selectVal = this.goods.selectedInCart;
+                            if (this.goods.selectedInCart == true) {
+                              // this.goods.
+                              print(this.cart.getCartSelectedPrice());
+                            }
                           });
                         }),
                   )),
               Expanded(
                   flex: 4,
                   child: Container(
-                      height: 500, color: Colors.white, child: Text("商品图片"))),
+                    height: 500, color: Colors.white,
+                    // child: Text("商品图片")
+                    //         child:  DecorationImage(
+                    // image: AssetImage(item.goodsPicsPath[0]), fit: BoxFit.cover),
+                    child: Image.asset(this.goods.goodsPicsPath[0]),
+                  )),
               Expanded(
                   flex: 4,
                   child: Container(
@@ -583,19 +561,19 @@ class _BasketItemState extends State<BasketItem> {
                                   flex: 2,
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
-                                    child: Text("商品标题"),
+                                    child: Text(this.goods.goodsTitle),
                                   )),
                               Expanded(
                                   flex: 2,
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                    child: Text("商品型号"),
+                                    child: Text(this.goods.goodsDesc),
                                   )),
                               Expanded(
                                   flex: 2,
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                    child: Text("商品数量"),
+                                    child: Text(this.goods.goodsFlags[0]),
                                   )),
                               Expanded(
                                   flex: 2,
@@ -610,7 +588,147 @@ class _BasketItemState extends State<BasketItem> {
                                         children: <Widget>[
                                           Expanded(
                                             flex: 2,
-                                            child: Text("75"),
+                                            child: Text(
+                                                this.goods.getGoodsPrice()),
+                                          ),
+                                          // FlatButton(
+                                          //   onPressed: null,
+                                          //   child: Text("-"),
+                                          // ),
+                                          // Expanded(
+                                          //   flex: 1,
+                                          //   child: Text(""),
+                                          // ),
+
+                                          Expanded(
+                                            flex: 3,
+                                            child: CounterEditWidget(),
+                                          ),
+
+                                          // Text("1"),
+                                          // Text("data")
+                                        ],
+                                      ))),
+                            ],
+                          ))
+                        ],
+                      )))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BasketItem1 extends StatefulWidget {
+  GoodsCart goods;
+  // ShoppingCart cart;
+  BasketItem1(this.goods);
+  @override
+  _BasketItemState1 createState() => _BasketItemState1(goods: this.goods);
+}
+
+class _BasketItemState1 extends State<BasketItem> {
+  bool selectVal = true;
+  String classTypeSecond = "肉类";
+  // ShoppingCart cart;
+  GoodsCart goods;
+  _BasketItemState1({this.goods});
+  @override
+  Widget build(BuildContext context) {
+    List<Goods> datas = getDataList(this.classTypeSecond);
+    return Container(
+      height: 150.0,
+      color: Colors.grey,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 1),
+        child: Container(
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 150.0,
+                    color: Colors.white,
+                    child: Checkbox(
+                        // value: this.selectVal,
+                        value: this.goods.selectedInCart,
+                        onChanged: (bool val) {
+                          this.setState(() {
+                            this.goods.selectedInCart =
+                                !this.goods.selectedInCart;
+                            this.selectVal = this.goods.selectedInCart;
+                            if (this.goods.selectedInCart == true) {
+                              // this.goods.
+                              // print(this.cart.getCartSelectedPrice());
+                            }
+                          });
+                        }),
+                  )),
+              Expanded(
+                  flex: 4,
+                  child: Container(
+                    height: 500, color: Colors.white,
+                    // child: Text("商品图片")
+                    //         child:  DecorationImage(
+                    // image: AssetImage(item.goodsPicsPath[0]), fit: BoxFit.cover),
+                    child: Image.asset(this.goods.goodsPicsPath[0]),
+                  )),
+              Expanded(
+                  flex: 4,
+                  child: Container(
+                      height: 500,
+                      color: Colors.white,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          // Text("Item Title"),
+                          // Text("Item simple introduce"),
+                          Expanded(
+                              child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
+                                    child: Text(this.goods.goodsTitle),
+                                  )),
+                              Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                    child: Text(this.goods.goodsDesc),
+                                  )),
+                              Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                    child: Text(this.goods.goodsFlags[0]),
+                                  )),
+                              Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 2,
+                                            child: Text(
+                                                this.goods.getGoodsPrice()),
                                           ),
                                           // FlatButton(
                                           //   onPressed: null,

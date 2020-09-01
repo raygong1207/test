@@ -55,7 +55,7 @@ Widget shopBasketPageBody(
                   // }).toList(),
 
                   children: cart.goods.map((f) {
-                    return BasketItem(cart, f);
+                    return BasketItem(thisclass, cart, f);
                     // print("object");
                     // Text("data");
                   }).toList(),
@@ -108,6 +108,15 @@ Widget shopBasketPageBody(
                           onChanged: (bool val) {
                             thisclass.setState(() {
                               thisclass.selectVal = !thisclass.selectVal;
+                              // cart.goodsCntAll = cart.goodsCntAll + 1;
+                              if (thisclass.selectVal == true) {
+                                cart.cartSelectAll();
+                              } else {
+                                cart.cartUnSelectAll();
+                              }
+                              // cart.getCartSelectedPrice();
+                              // print("2goodsCntAll=${cart.goodsCntAll}");
+                              print("1goodsCntAll=${cart.goodsCntAll}");
                             });
                           }),
                     )),
@@ -137,10 +146,18 @@ class ShopBasketPage extends StatefulWidget {
 
 class _ShopBasketPageState extends State<ShopBasketPage> {
   bool selectVal = false;
+  ShoppingCart shoppingCart;
+  @override
+  void initState() {
+    // TODO: implement initState
+    shoppingCart = getShoppingCart("蔬菜");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // return ShopBasketPageBody(this, context);
-    ShoppingCart shoppingCart = getShoppingCart("蔬菜");
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

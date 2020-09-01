@@ -6,6 +6,7 @@ import '../common/common_api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../common/goods.dart';
 import '../common/ShoppingCart.dart';
+// import '../pages/ShopBasketPage.dart';
 
 toast(String text) {
   Fluttertoast.showToast(
@@ -484,10 +485,11 @@ class _GroupTabState extends State<GroupTab> {
 class BasketItem extends StatefulWidget {
   GoodsCart goods;
   ShoppingCart cart;
-  BasketItem(this.cart, this.goods);
+  var thisclass;
+  BasketItem(this.thisclass, this.cart, this.goods);
   @override
-  _BasketItemState createState() =>
-      _BasketItemState(cart: this.cart, goods: this.goods);
+  _BasketItemState createState() => _BasketItemState(
+      thisclass: this.thisclass, cart: this.cart, goods: this.goods);
 }
 
 class _BasketItemState extends State<BasketItem> {
@@ -495,10 +497,11 @@ class _BasketItemState extends State<BasketItem> {
   String classTypeSecond = "肉类";
   ShoppingCart cart;
   GoodsCart goods;
-  _BasketItemState({this.cart, this.goods});
+  var thisclass;
+  _BasketItemState({this.thisclass, this.cart, this.goods});
   @override
   Widget build(BuildContext context) {
-    List<Goods> datas = getDataList(this.classTypeSecond);
+    // List<Goods> datas = getDataList(this.classTypeSecond);
     return Container(
       height: 150.0,
       color: Colors.grey,
@@ -526,7 +529,14 @@ class _BasketItemState extends State<BasketItem> {
                             if (this.goods.selectedInCart == true) {
                               // this.goods.
                               print(this.cart.getCartSelectedPrice());
+                            } else {
+                              print(this.cart.getCartSelectedPrice());
                             }
+                          });
+                          thisclass.setState(() {
+                            // cart.goodsCntAll++;
+                            this.cart.getCartSelectedPrice();
+                            print("2goodsCntAll=${this.cart.goodsCntAll}");
                           });
                         }),
                   )),
@@ -629,7 +639,7 @@ class BasketItem1 extends StatefulWidget {
   _BasketItemState1 createState() => _BasketItemState1(goods: this.goods);
 }
 
-class _BasketItemState1 extends State<BasketItem> {
+class _BasketItemState1 extends State<BasketItem1> {
   bool selectVal = true;
   String classTypeSecond = "肉类";
   // ShoppingCart cart;

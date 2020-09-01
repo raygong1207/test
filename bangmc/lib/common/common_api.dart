@@ -14,7 +14,7 @@ List itemPics = [
 List<Goods> getDataList(String typeSecond) {
   List<Goods> list = [];
   // double price = 0.0;
-  print(typeSecond);
+  // print(typeSecond);
   int num1 = 0;
   int num2 = 0;
   for (int i = 0; i < 10; i++) {
@@ -76,7 +76,7 @@ List<GoodsCart> getGoodsCartList(String typeSecond) {
 ShoppingCart getShoppingCart(String typeSecond) {
   ShoppingCart Cart = new ShoppingCart();
   // double price = 0.0;
-  print(typeSecond);
+  // print(typeSecond);
   int num1 = 0;
   int num2 = 0;
   for (int i = 0; i < 10; i++) {

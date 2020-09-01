@@ -116,7 +116,7 @@ Widget shopBasketPageBody(
                               }
                               // cart.getCartSelectedPrice();
                               // print("2goodsCntAll=${cart.goodsCntAll}");
-                              print("1goodsCntAll=${cart.goodsCntAll}");
+                              // print("1goodsCntAll=${cart.goodsCntAll}");
                             });
                           }),
                     )),
@@ -146,11 +146,23 @@ class ShopBasketPage extends StatefulWidget {
 
 class _ShopBasketPageState extends State<ShopBasketPage> {
   bool selectVal = false;
-  ShoppingCart shoppingCart;
+  ShoppingCart cart;
   @override
   void initState() {
     // TODO: implement initState
-    shoppingCart = getShoppingCart("蔬菜");
+    cart = getShoppingCart("蔬菜");
+    this.setState(() {
+      // this.selectVal = !this.selectVal;
+      // cart.goodsCntAll = cart.goodsCntAll + 1;
+      if (this.selectVal == true) {
+        cart.cartSelectAll();
+      } else {
+        cart.cartUnSelectAll();
+      }
+      // cart.getCartSelectedPrice();
+      // print("2goodsCntAll=${cart.goodsCntAll}");
+      // print("1goodsCntAll=${cart.goodsCntAll}");
+    });
     super.initState();
   }
 
@@ -165,7 +177,7 @@ class _ShopBasketPageState extends State<ShopBasketPage> {
         leading: Icon(Icons.arrow_back),
         title: Text("购物车"),
       ),
-      body: Center(child: shopBasketPageBody(this, context, shoppingCart)),
+      body: Center(child: shopBasketPageBody(this, context, cart)),
     );
   }
 }

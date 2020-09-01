@@ -57,8 +57,8 @@ class ShoppingCart {
         // print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
       }
     }
-    print("goodsCntSelected1=${this.goodsCntSelected}");
-    print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
+    // print("goodsCntSelected1=${this.goodsCntSelected}");
+    // print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
     return "￥" + this.goodsSelectedPrice.toString();
   }
 
@@ -108,8 +108,8 @@ class ShoppingCart {
         // print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
       }
     }
-    print("goodsCntSelected1=${this.goodsCntSelected}");
-    print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
+    // print("goodsCntSelected1=${this.goodsCntSelected}");
+    // print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
     return "￥" + this.goodsSelectedPrice.toString();
   }
 
@@ -159,8 +159,8 @@ class ShoppingCart {
         // print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
       }
     }
-    print("goodsCntSelected1=${this.goodsCntSelected}");
-    print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
+    // print("goodsCntSelected1=${this.goodsCntSelected}");
+    // print("goodsSelectedPrice1=${this.goodsSelectedPrice}");
     return "￥" + this.goodsSelectedPrice.toString();
   }
 

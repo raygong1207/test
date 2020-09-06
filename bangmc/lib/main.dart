@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import './common/common_widgets.dart';
 import './common/common_cfg.dart';
 import './pages/MainPage.dart';
+import './route/Routes.dart';
 
 void main() => runApp(BangMCApp());
 
@@ -11,94 +12,96 @@ class BangMCApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '帮买菜',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: getGlobalMColorBackground(context),
-        // primaryColor: getGlobalMColorBackground(),
-        // primaryColor: Colors.lightGreen[400],
+        title: '帮买菜',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: getGlobalMColorBackground(context),
+          // primaryColor: getGlobalMColorBackground(),
+          // primaryColor: Colors.lightGreen[400],
 
-        // brightness: Brightness.light,
-        // primaryColorBrightness:Brightness.light,
-        // bottomAppBarColor:Colors.red,
-        // scaffoldBackgroundColor:Colors.blue,
-        // focusColor:Colors.red,
+          // brightness: Brightness.light,
+          // primaryColorBrightness:Brightness.light,
+          // bottomAppBarColor:Colors.red,
+          // scaffoldBackgroundColor:Colors.blue,
+          // focusColor:Colors.red,
 
-        //     Brightness brightness,
-        // MaterialColor primarySwatch,
-        // Color primaryColor,
-        // Brightness primaryColorBrightness,
-        // Color primaryColorLight,
-        // Color primaryColorDark,
-        // Color accentColor,
-        // Brightness accentColorBrightness,
-        // Color canvasColor,
-        // Color scaffoldBackgroundColor,
-        // Color bottomAppBarColor,
-        // Color cardColor,
-        // Color dividerColor,
-        // Color focusColor,
-        // Color hoverColor,
-        // Color highlightColor,
-        // Color splashColor,
-        // InteractiveInkFeatureFactory splashFactory,
-        // Color selectedRowColor,
-        // Color unselectedWidgetColor,
-        // Color disabledColor,
-        // Color buttonColor,
-        // ButtonThemeData buttonTheme,
-        // ToggleButtonsThemeData toggleButtonsTheme,
-        // Color secondaryHeaderColor,
-        // Color textSelectionColor,
-        // Color cursorColor,
-        // Color textSelectionHandleColor,
-        // Color backgroundColor,
-        // Color dialogBackgroundColor,
-        // Color indicatorColor,
-        // Color hintColor,
-        // Color errorColor,
-        // Color toggleableActiveColor,
-        // String fontFamily,
-        // TextTheme textTheme,
-        // TextTheme primaryTextTheme,
-        // TextTheme accentTextTheme,
-        // InputDecorationTheme inputDecorationTheme,
-        // IconThemeData iconTheme,
-        // IconThemeData primaryIconTheme,
-        // IconThemeData accentIconTheme,
-        // SliderThemeData sliderTheme,
-        // TabBarTheme tabBarTheme,
-        // TooltipThemeData tooltipTheme,
-        // CardTheme cardTheme,
-        // ChipThemeData chipTheme,
-        // TargetPlatform platform,
-        // MaterialTapTargetSize materialTapTargetSize,
-        // bool applyElevationOverlayColor,
-        // PageTransitionsTheme pageTransitionsTheme,
-        // AppBarTheme appBarTheme,
-        // BottomAppBarTheme bottomAppBarTheme,
-        // ColorScheme colorScheme,
-        // DialogTheme dialogTheme,
-        // FloatingActionButtonThemeData floatingActionButtonTheme,
-        // Typography typography,
-        // CupertinoThemeData cupertinoOverrideTheme,
-        // SnackBarThemeData snackBarTheme,
-        // BottomSheetThemeData bottomSheetTheme,
-        // PopupMenuThemeData popupMenuTheme,
-        // MaterialBannerThemeData bannerTheme,
-        // DividerThemeData dividerTheme,
-        // ButtonBarThemeData buttonBarTheme,
-      ),
-      home: MainPage(),
-    );
+          //     Brightness brightness,
+          // MaterialColor primarySwatch,
+          // Color primaryColor,
+          // Brightness primaryColorBrightness,
+          // Color primaryColorLight,
+          // Color primaryColorDark,
+          // Color accentColor,
+          // Brightness accentColorBrightness,
+          // Color canvasColor,
+          // Color scaffoldBackgroundColor,
+          // Color bottomAppBarColor,
+          // Color cardColor,
+          // Color dividerColor,
+          // Color focusColor,
+          // Color hoverColor,
+          // Color highlightColor,
+          // Color splashColor,
+          // InteractiveInkFeatureFactory splashFactory,
+          // Color selectedRowColor,
+          // Color unselectedWidgetColor,
+          // Color disabledColor,
+          // Color buttonColor,
+          // ButtonThemeData buttonTheme,
+          // ToggleButtonsThemeData toggleButtonsTheme,
+          // Color secondaryHeaderColor,
+          // Color textSelectionColor,
+          // Color cursorColor,
+          // Color textSelectionHandleColor,
+          // Color backgroundColor,
+          // Color dialogBackgroundColor,
+          // Color indicatorColor,
+          // Color hintColor,
+          // Color errorColor,
+          // Color toggleableActiveColor,
+          // String fontFamily,
+          // TextTheme textTheme,
+          // TextTheme primaryTextTheme,
+          // TextTheme accentTextTheme,
+          // InputDecorationTheme inputDecorationTheme,
+          // IconThemeData iconTheme,
+          // IconThemeData primaryIconTheme,
+          // IconThemeData accentIconTheme,
+          // SliderThemeData sliderTheme,
+          // TabBarTheme tabBarTheme,
+          // TooltipThemeData tooltipTheme,
+          // CardTheme cardTheme,
+          // ChipThemeData chipTheme,
+          // TargetPlatform platform,
+          // MaterialTapTargetSize materialTapTargetSize,
+          // bool applyElevationOverlayColor,
+          // PageTransitionsTheme pageTransitionsTheme,
+          // AppBarTheme appBarTheme,
+          // BottomAppBarTheme bottomAppBarTheme,
+          // ColorScheme colorScheme,
+          // DialogTheme dialogTheme,
+          // FloatingActionButtonThemeData floatingActionButtonTheme,
+          // Typography typography,
+          // CupertinoThemeData cupertinoOverrideTheme,
+          // SnackBarThemeData snackBarTheme,
+          // BottomSheetThemeData bottomSheetTheme,
+          // PopupMenuThemeData popupMenuTheme,
+          // MaterialBannerThemeData bannerTheme,
+          // DividerThemeData dividerTheme,
+          // ButtonBarThemeData buttonBarTheme,
+        ),
+        initialRoute: "/",
+        onGenerateRoute: onGenerateRoute
+        // home: MainPage(),
+        );
   }
 }
 

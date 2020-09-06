@@ -32,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
+        // leading: Icon(Icons.arrow_back),
         title: Text("搜索"),
       ),
       body: Center(child: _SearchPageStateBody(this, context)),

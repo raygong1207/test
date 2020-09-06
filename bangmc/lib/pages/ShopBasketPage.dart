@@ -174,7 +174,7 @@ class _ShopBasketPageState extends State<ShopBasketPage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: Icon(Icons.arrow_back),
+        // leading: Icon(Icons.arrow_back),
         title: Text("购物车"),
       ),
       body: Center(child: shopBasketPageBody(this, context, cart)),

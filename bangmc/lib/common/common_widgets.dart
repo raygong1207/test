@@ -1,3 +1,4 @@
+import 'package:bangmc/pages/MorePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../common/common_cfg.dart';
@@ -406,35 +407,68 @@ class _GroupTabState extends State<GroupTab> {
                     ),
                 // height: 40.0,
                 child: Row(
+                  // mainAxisSize: MainAxisSize.min,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
+                    // Expanded(
+                    //   flex: 1,
+                    //   child:
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          // color: Colors.red[100],
+                          color: getGlobalColorBackgroundLv3GroupContentPage(
+                              context),
+                          // color: Colors.lightGreen[100],
+                          // border: Border.all(
+                          //   color: Colors.grey,
+
+                          // ),
+                          // shape: BoxShape.rectangle,
+                          // borderRadius: BorderRadius.circular(5)
+                        ),
+                        child: Text(this.classTitle),
+                      ),
+                    ),
+                    // ),
+                    // Expanded(
+                    //   flex: 1,
+                    //   child:
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
+                      // child: Text("更多"),
+                      child: InkWell(
+                        splashColor: Colors.red,
+                        highlightColor: Colors.black,
+                        radius: 2,
+                        borderRadius: BorderRadius.circular(5.0),
+                        onTap: () {
+                          print("进入更多页面1${this.classTitle}");
+                          // Navigator.pushNamed(context, "/search");
+                          Navigator.pushNamed(context, "/more",
+                              arguments: {'title': this.classTitle});
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //     builder: (context) => MorePage(this.classTitle)));
+                          // MorePage();
+                          // toast("加入购物车");
+                        },
                         child: Container(
                           decoration: BoxDecoration(
-                            // color: Colors.red[100],
-                            color: getGlobalColorBackgroundLv3GroupContentPage(
-                                context),
-                            // color: Colors.lightGreen[100],
-                            // border: Border.all(
-                            //   color: Colors.grey,
-
-                            // ),
-                            // shape: BoxShape.rectangle,
-                            // borderRadius: BorderRadius.circular(5)
+                            borderRadius: BorderRadius.circular(5),
+                            // color: Colors.green,
                           ),
-                          child: Text(this.classTitle),
+                          // child: Icon(
+                          //   Icons.add,
+                          //   color: Colors.black,
+                          // ),
+                          child: Text("更多"),
                         ),
                       ),
                     ),
-                    Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
-                        // child: Text("Row 3"),
-                      ),
-                    ),
+                    // ),
                   ],
                 ),
               ),
@@ -480,6 +514,97 @@ class _GroupTabState extends State<GroupTab> {
       ),
     );
   }
+}
+
+Widget MorePageBody(String title, String type) {
+  String classTitle = title;
+  String classTypeSecond = type;
+
+  List<Goods> datas = getDataList(classTypeSecond);
+  print("bb=$title");
+  return Column(children: <Widget>[
+    Expanded(
+        flex: 1,
+        child: Container(
+            decoration: new BoxDecoration(
+              //背景
+              color: Colors.white,
+              gradient: LinearGradient(colors: [
+                Color(0xFFFFFFFF),
+                Color(0xDDDDDDDD),
+                Color(0xAAAAAAAA)
+                // Color(0x44004400),
+                // Color(0x88008800),
+                // Color(0xFF00DD00),
+                // Color(0xFF00FF00),
+                // Color(0x88008800),
+                // Color(0x44004400),
+              ], begin: FractionalOffset(0, 0), end: FractionalOffset(0, 1)),
+              //设置四周圆角 角度
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              // borderRadius: BorderRadius.only()
+              //设置四周边框
+              // border: new Border.all(width: 1, color: Colors.red),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text("全部商品（0 ）"),
+                Text("已选商品（0）"),
+              ],
+            ))),
+    Expanded(
+        flex: 10,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+          child: null,
+        )),
+    Expanded(
+      flex: 1,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
+        child: Container(
+            decoration: new BoxDecoration(
+              //背景
+              color: Colors.white,
+              gradient: LinearGradient(colors: [
+                Color(0xFFFFFFFF),
+                Color(0xDDDDDDDD),
+                Color(0xAAAAAAAA)
+              ], begin: FractionalOffset(0, 0), end: FractionalOffset(0, 1)),
+              //设置四周圆角 角度
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              // borderRadius: BorderRadius.only()
+              //设置四周边框
+              // border: new Border.all(width: 1, color: Colors.red),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 500.0,
+                      // color: Colors.white,
+                      child: null,
+                    )),
+                Expanded(
+                  flex: 2,
+                  child: Text("全选（0）"),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Text("总价：0"),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: FlatButton(onPressed: null, child: Text("结算")),
+                ),
+              ],
+            )),
+      ),
+    ),
+  ]);
 }
 
 class BasketItem extends StatefulWidget {

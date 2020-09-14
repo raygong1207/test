@@ -8,16 +8,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../common/goods.dart';
 import '../common/ShoppingCart.dart';
 // import '../pages/ShopBasketPage.dart';
+import '../pages/MorePage.dart';
 
 toast(String text) {
   Fluttertoast.showToast(
-    msg: "登录成功",
-    toastLength: Toast.LENGTH_LONG,
-    gravity: ToastGravity.BOTTOM, // 消息框弹出的位置
+    msg: text,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.CENTER, // 消息框弹出的位置
     timeInSecForIos: 1, // 消息框持续的时间（目前的版本只有ios有效）
     backgroundColor: Colors.red,
     textColor: Colors.white,
-    fontSize: 16.0,
+    fontSize: 24.0,
   );
 }
 
@@ -102,7 +103,7 @@ Widget genItemContents2(BuildContext context, int flex, Goods item) {
         style: TextStyle(color: Colors.green, fontSize: 10),
       ),
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
             // "sdfsa",
@@ -178,12 +179,13 @@ Widget genItemContents2(BuildContext context, int flex, Goods item) {
             radius: 2,
             borderRadius: BorderRadius.circular(5.0),
             onTap: () {
-              print("加入购物车");
-              // toast("加入购物车");
+              print("加入购物车1");
+              toast("加入购物车1");
             },
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+                // borderRadius: BorderRadius.circular(15),
+                shape: BoxShape.circle,
                 color: Colors.green,
               ),
               child: Icon(
@@ -514,97 +516,6 @@ class _GroupTabState extends State<GroupTab> {
       ),
     );
   }
-}
-
-Widget MorePageBody(String title, String type) {
-  String classTitle = title;
-  String classTypeSecond = type;
-
-  List<Goods> datas = getDataList(classTypeSecond);
-  print("bb=$title");
-  return Column(children: <Widget>[
-    Expanded(
-        flex: 1,
-        child: Container(
-            decoration: new BoxDecoration(
-              //背景
-              color: Colors.white,
-              gradient: LinearGradient(colors: [
-                Color(0xFFFFFFFF),
-                Color(0xDDDDDDDD),
-                Color(0xAAAAAAAA)
-                // Color(0x44004400),
-                // Color(0x88008800),
-                // Color(0xFF00DD00),
-                // Color(0xFF00FF00),
-                // Color(0x88008800),
-                // Color(0x44004400),
-              ], begin: FractionalOffset(0, 0), end: FractionalOffset(0, 1)),
-              //设置四周圆角 角度
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              // borderRadius: BorderRadius.only()
-              //设置四周边框
-              // border: new Border.all(width: 1, color: Colors.red),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text("全部商品（0 ）"),
-                Text("已选商品（0）"),
-              ],
-            ))),
-    Expanded(
-        flex: 10,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-          child: null,
-        )),
-    Expanded(
-      flex: 1,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
-        child: Container(
-            decoration: new BoxDecoration(
-              //背景
-              color: Colors.white,
-              gradient: LinearGradient(colors: [
-                Color(0xFFFFFFFF),
-                Color(0xDDDDDDDD),
-                Color(0xAAAAAAAA)
-              ], begin: FractionalOffset(0, 0), end: FractionalOffset(0, 1)),
-              //设置四周圆角 角度
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              // borderRadius: BorderRadius.only()
-              //设置四周边框
-              // border: new Border.all(width: 1, color: Colors.red),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      height: 500.0,
-                      // color: Colors.white,
-                      child: null,
-                    )),
-                Expanded(
-                  flex: 2,
-                  child: Text("全选（0）"),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text("总价：0"),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: FlatButton(onPressed: null, child: Text("结算")),
-                ),
-              ],
-            )),
-      ),
-    ),
-  ]);
 }
 
 class BasketItem extends StatefulWidget {
